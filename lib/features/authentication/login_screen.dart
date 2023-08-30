@@ -38,13 +38,13 @@ class LoginScreen extends StatelessWidget {
               AuthButton(
                 icon: const FaIcon(FontAwesomeIcons.user),
                 text: "Use email & password",
-                func: () => {},
+                onPressed: (context) => {},
               ),
               Gaps.v14,
               AuthButton(
                 icon: const FaIcon(FontAwesomeIcons.apple),
                 text: "Continue with Apple",
-                func: () => {},
+                onPressed: (context) => {},
               ),
             ],
           ),

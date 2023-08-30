@@ -2,22 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
+typedef GestureDetectorFunc = void Function(BuildContext);
+
 class AuthButton extends StatelessWidget {
   final String text;
   final FaIcon icon;
-  final Function func;
+  final GestureDetectorFunc onPressed;
 
   const AuthButton({
     super.key,
     required this.text,
     required this.icon,
-    required this.func,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => func(context),
+      onTap: () => onPressed(context),
       child: FractionallySizedBox(
         widthFactor: 1,
         child: Container(

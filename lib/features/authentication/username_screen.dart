@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
+
+import 'email_screen.dart';
 
 class UserNameScreen extends StatefulWidget {
   const UserNameScreen({super.key});
@@ -18,11 +21,25 @@ class _UserNameScreenState extends State<UserNameScreen> {
     super.initState();
 
     _usernameController.addListener(() {
-      print(_usernameController.text);
       setState(() {
         _username = _usernameController.text;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    super.dispose();
+  }
+
+  void onNextTap() {
+    if (_username.isEmpty) return;
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const EmailScreen(),
+      ),
+    );
   }
 
   @override
@@ -71,28 +88,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
               cursorColor: Theme.of(context).primaryColor,
             ),
             Gaps.v28,
-            FractionallySizedBox(
-              widthFactor: 1,
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 500),
-                padding: const EdgeInsets.symmetric(vertical: Sizes.size16),
-                decoration: BoxDecoration(
-                  color: _username.isEmpty
-                      ? Colors.grey.shade400
-                      : Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(Sizes.size5),
-                ),
-                child: const Text(
-                  "Next",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: Sizes.size16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ),
+            FormButton(onPressed: onNextTap, disabled: _username.isEmpty),
           ],
         ),
       ),
