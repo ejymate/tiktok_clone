@@ -25,7 +25,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
     super.initState();
 
     final maximumYear = _today.year - 12;
-    initialDate = DateTime.parse("$maximumYear-01-01");
+    initialDate = DateTime.parse("$maximumYear-12-31");
     _setBirthdayText(initialDate);
   }
 
@@ -119,15 +119,14 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: SizedBox(
+      bottomNavigationBar: BottomAppBar(
+        padding: const EdgeInsets.symmetric(horizontal: 0),
         height: 300,
-        child: BottomAppBar(
-          child: CupertinoDatePicker(
-            maximumDate: initialDate,
-            initialDateTime: initialDate,
-            mode: CupertinoDatePickerMode.date,
-            onDateTimeChanged: (value) => _setBirthdayText(value),
-          ),
+        child: CupertinoDatePicker(
+          maximumDate: initialDate,
+          initialDateTime: initialDate,
+          mode: CupertinoDatePickerMode.date,
+          onDateTimeChanged: (value) => _setBirthdayText(value),
         ),
       ),
     );
