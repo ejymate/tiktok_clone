@@ -48,6 +48,14 @@ class _TutorialScreenState extends State<TutorialScreen> {
     }
   }
 
+  void _onEnterTheApp() {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => const MainNavigationScreen(),
+        ),
+        (route) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -84,7 +92,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                 horizontal: Sizes.size24,
               ),
               child: CupertinoButton(
-                onPressed: () {},
+                onPressed: _onEnterTheApp,
                 color: Theme.of(context).primaryColor,
                 child: const Text("Enter the app!"),
               ),
