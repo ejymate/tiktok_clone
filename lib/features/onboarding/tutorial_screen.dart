@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tiktok_clone/features/navigation/main_navigation_screen.dart';
 import 'package:tiktok_clone/features/onboarding/widgets/tutorial_message.dart';
 
 import '../../constants/sizes.dart';
@@ -69,6 +71,23 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   ? CrossFadeState.showFirst
                   : CrossFadeState.showSecond,
               duration: const Duration(milliseconds: 400),
+            ),
+          ),
+        ),
+        bottomNavigationBar: AnimatedOpacity(
+          duration: const Duration(milliseconds: 400),
+          opacity: _showPage == Page.first ? 0 : 1,
+          child: BottomAppBar(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: Sizes.size24,
+                horizontal: Sizes.size24,
+              ),
+              child: CupertinoButton(
+                onPressed: () {},
+                color: Theme.of(context).primaryColor,
+                child: const Text("Enter the app!"),
+              ),
             ),
           ),
         ),
